@@ -1,0 +1,58 @@
+[
+  {
+    "id": "exo-001",
+    "name": "Kepler-186f",
+    "host_star": "Kepler-186",
+    "discovery_method": "Transit",
+    "discovery_year": 2014,
+    "distance_light_years": 492.0,
+    "orbital_period_days": 129.9,
+    "radius_earth": 1.11,
+    "mass_jupiter": null,
+    "potentially_habitable": true,
+    "constellation": "Cygnus",
+    "summary": "A potentially rocky exoplanet in the habitable zone of its host star."
+  },
+  {
+    "id": "exo-002",
+    "name": "Proxima Centauri b",
+    "host_star": "Proxima Centauri",
+    "discovery_method": "Radial Velocity",
+    "discovery_year": 2016,
+    "distance_light_years": 4.24,
+    "orbital_period_days": 11.2,
+    "radius_earth": 1.3,
+    "mass_jupiter": 0.004,
+    "potentially_habitable": true,
+    "constellation": "Centaurus",
+    "summary": "A nearby exoplanet orbiting the closest star to the Sun."
+  },
+  {
+    "id": "exo-003",
+    "name": "TRAPPIST-1e",
+    "host_star": "TRAPPIST-1",
+    "discovery_method": "Transit",
+    "discovery_year": 2017,
+    "distance_light_years": 39.0,
+    "orbital_period_days": 6.1,
+    "radius_earth": 0.92,
+    "mass_jupiter": 0.002,
+    "potentially_habitable": true,
+    "constellation": "Aquarius",
+    "summary": "One of several Earth-sized worlds in the TRAPPIST-1 system."
+  },
+  {
+    "id": "exo-004",
+    "name": "51 Pegasi b",
+    "host_star": "51 Pegasi",
+    "discovery_method": "Radial Velocity",
+    "discovery_year": 1995,
+    "distance_light_years": 50.9,
+    "orbital_period_days": 4.2,
+    "radius_earth": null,
+    "mass_jupiter": 0.46,
+    "potentially_habitable": false,
+    "constellation": "Pegasus",
+    "summary": "The first exoplanet discovered orbiting a Sun-like star."
+  }
+]

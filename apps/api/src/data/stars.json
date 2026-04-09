@@ -1,0 +1,47 @@
+[
+  {
+    "id": "star-001",
+    "name": "Betelgeuse",
+    "spectral_type": "M1-2Ia-ab",
+    "distance_light_years": 548.0,
+    "apparent_magnitude": 0.42,
+    "constellation": "Orion",
+    "description": "A red supergiant star in Orion and one of the brightest stars in the night sky."
+  },
+  {
+    "id": "star-002",
+    "name": "Sirius",
+    "spectral_type": "A1V",
+    "distance_light_years": 8.6,
+    "apparent_magnitude": -1.46,
+    "constellation": "Canis Major",
+    "description": "The brightest star visible from Earth's night sky."
+  },
+  {
+    "id": "star-003",
+    "name": "Proxima Centauri",
+    "spectral_type": "M5.5Ve",
+    "distance_light_years": 4.24,
+    "apparent_magnitude": 11.13,
+    "constellation": "Centaurus",
+    "description": "The closest known star to the Sun."
+  },
+  {
+    "id": "star-004",
+    "name": "Vega",
+    "spectral_type": "A0V",
+    "distance_light_years": 25.0,
+    "apparent_magnitude": 0.03,
+    "constellation": "Lyra",
+    "description": "A bright nearby star often used as a photometric reference."
+  },
+  {
+    "id": "star-005",
+    "name": "Polaris",
+    "spectral_type": "F7Ib",
+    "distance_light_years": 433.0,
+    "apparent_magnitude": 1.98,
+    "constellation": "Ursa Minor",
+    "description": "The current North Star, close to the north celestial pole."
+  }
+]
