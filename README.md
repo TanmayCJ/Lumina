@@ -1,119 +1,62 @@
 # Lumina
 
-An AI-based astronomy assistant focused on learning, exploration, and guided understanding of stars and celestial objects.
+<p align="center">
+	<img src="assets/lumina-logo.png" alt="Lumina Logo" width="220" />
+</p>
 
-Lumina is designed as a modular, AI-first platform with a clean backend foundation, local dataset support, and a scalable architecture for future LLM orchestration, vector search, and production deployment.
+Lumina is an AI-based star guide designed to help users explore astronomy with structure, clarity, and beautiful interaction.
+It combines curated celestial datasets, a guided explanation engine, and a premium frontend experience to make learning the night sky feel modern and intuitive.
 
----
+## What Lumina Includes Right Now
 
-## Highlights
+- FastAPI backend with production-style modular architecture
+- Curated local astronomy datasets for stars and celestial objects
+- Guided explanation endpoint with beginner/intermediate/advanced tone support
+- Next.js + TypeScript frontend with polished dark-space visual design
+- One-command local startup workflow through VS Code task: Run Lumina
 
-- Modern FastAPI backend with OpenAPI/Swagger docs
-- Dataset-driven API layer for stars and deep-sky objects
-- Modular architecture ready for AI orchestration and vector database integration
-- Local JSON dataset loading with graceful fallback behavior
-- Clear separation of routers, schemas, services, and data assets
+## Current Datasets
 
----
-
-## Datasets Included (Current)
-
-Lumina currently uses local dataset files under `apps/api/src/data`.
+Lumina currently loads curated JSON datasets from apps/api/src/data.
 
 | Domain | File | Purpose |
 |---|---|---|
-| Stars | `apps/api/src/data/stars.json` | Star identity, spectral class, distance, magnitude, constellation |
-| Celestial Objects | `apps/api/src/data/objects.json` | Nebula/galaxy/cluster metadata and constellation linkage |
-Planned future sources include curated stellar catalogs and expanded deep-sky object metadata repositories.
+| Stars | apps/api/src/data/stars.json | Star identity, constellation, distance, magnitude, spectral class, description |
+| Celestial Objects | apps/api/src/data/objects.json | Galaxy/nebula/cluster metadata and sky context |
 
----
+## Current API Surface
 
-## API Surface (v1)
+Base URL: http://127.0.0.1:8000
 
-Base URL: `http://127.0.0.1:8000`
-
-### Health
-
-- `GET /health`
-
-### Stars
-
-- `GET /api/v1/stars`
-- `GET /api/v1/stars/{star_id}`
-- `POST /api/v1/stars/search`
-
-Supported filter/search fields:
-- `name`
-- `spectral_type`
-- `min_distance`
-- `max_distance`
-- `min_magnitude`
-- `max_magnitude`
-- `constellation`
-- `page`
-- `page_size`
-
-### Celestial Objects
-
-- `GET /api/v1/objects`
-- `GET /api/v1/objects/{object_id}`
-- `POST /api/v1/objects/search`
-
-Supported filter/search fields:
-- `name`
-- `object_type`
-- `constellation`
-- `page`
-- `page_size`
-
-### Sky Guide
-
-- `POST /api/v1/guide/explain`
-
-Request body input fields:
-- `name`
-- `category`
-- `user_level`
-- `include_scientific_facts`
-- `context`
-
----
+- GET /health
+- GET /api/v1/stars
+- GET /api/v1/stars/{star_id}
+- POST /api/v1/stars/search
+- GET /api/v1/objects
+- GET /api/v1/objects/{object_id}
+- POST /api/v1/objects/search
+- POST /api/v1/guide/explain
 
 ## Run Locally
 
-1. Install dependencies:
+### Recommended (single command)
 
-```bash
-pip install -r apps/api/requirements.txt
-```
+1. Open VS Code Command Palette.
+2. Run Tasks: Run Task.
+3. Select Run Lumina.
 
-2. Start the backend server:
+This starts:
+- Backend: http://127.0.0.1:8000
+- Frontend: http://localhost:3000
 
-```bash
-uvicorn apps.api.src.main:app --reload
-```
+### Manual option
 
-3. Open API docs:
+- Backend dependencies: pip install -r apps/api/requirements.txt
+- Frontend dependencies: npm --prefix apps/web install
+- Backend start: .venv/Scripts/python.exe -m uvicorn apps.api.src.main:app --reload
+- Frontend start: npm --prefix apps/web run dev
 
-- Swagger UI: `http://127.0.0.1:8000/docs`
-- OpenAPI spec: `http://127.0.0.1:8000/openapi.json`
+## Product Direction
 
----
-
-## Architecture Direction
-
-Lumina is structured for modular growth across:
-- Frontend experience layer
-- Backend API services
-- AI orchestration and prompt systems
-- Astronomy data ingestion and processing
-- Future vector retrieval and semantic search
-- Production-grade monitoring and deployment
-
----
-
-## Status
-
-Current stage: milestone 1 backend foundation complete and Swagger-testable.
-
-Next stage: expand dataset coverage, add retrieval-enhanced guide logic, and connect frontend experience.
+Lumina is being built as a scalable AI-first astronomy platform with clear separation across data, API, AI guidance logic, and user experience layers.
+Milestone 1 focuses on a complete, demo-ready core loop: ask about a celestial entity and receive structured facts plus educational guidance.

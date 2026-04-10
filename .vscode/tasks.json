@@ -1,0 +1,117 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Lumina: Backend Setup",
+      "type": "shell",
+      "command": ".\\.venv\\Scripts\\python.exe",
+      "args": [
+        "-m",
+        "pip",
+        "install",
+        "-r",
+        "apps/api/requirements.txt"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "reveal": "silent",
+        "panel": "dedicated",
+        "group": "lumina"
+      }
+    },
+    {
+      "label": "Lumina: Backend",
+      "type": "shell",
+      "command": ".\\.venv\\Scripts\\python.exe",
+      "args": [
+        "-m",
+        "uvicorn",
+        "apps.api.src.main:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8000",
+        "--reload"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "custom",
+        "pattern": {
+          "regexp": "^(.*)$",
+          "file": 1
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Started reloader process",
+          "endsPattern": "Application startup complete"
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "lumina"
+      }
+    },
+    {
+      "label": "Lumina: Frontend",
+      "type": "shell",
+      "command": "npm",
+      "args": [
+        "--prefix",
+        "apps/web",
+        "run",
+        "dev"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "custom",
+        "pattern": {
+          "regexp": "^(.*)$",
+          "file": 1
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "next dev",
+          "endsPattern": "Ready in"
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "lumina"
+      }
+    },
+    {
+      "label": "Lumina: Services",
+      "dependsOrder": "parallel",
+      "dependsOn": [
+        "Lumina: Backend",
+        "Lumina: Frontend"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "Run Lumina",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "Lumina: Backend Setup",
+        "Lumina: Services"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    }
+  ]
+}
