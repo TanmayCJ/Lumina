@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
-from .api.routers import exoplanets, guide, health, objects, stars
+from .api.routers import guide, health, objects, stars
 from .core.config import get_settings
 from .core.exceptions import DatasetEntityNotFound
 
@@ -12,10 +12,10 @@ def create_app() -> FastAPI:
     app = FastAPI(
         title=settings.app_name,
         version=settings.api_version,
-        summary="Dataset-driven astronomy backend for Lumina",
+        summary="Milestone 1 backend for Lumina astronomy guide",
         description=(
-            "Lumina API provides astronomy-focused endpoints for stars, celestial objects, "
-            "exoplanets, and guided educational summaries."
+            "Lumina API provides curated dataset endpoints for stars and celestial objects, "
+            "plus a guided explanation endpoint designed for first product milestone validation."
         ),
         docs_url="/docs",
         redoc_url="/redoc",
@@ -35,7 +35,6 @@ def create_app() -> FastAPI:
     app.include_router(health.router)
     app.include_router(stars.router)
     app.include_router(objects.router)
-    app.include_router(exoplanets.router)
     app.include_router(guide.router)
 
     return app

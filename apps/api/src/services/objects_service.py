@@ -29,7 +29,7 @@ class ObjectsService:
         ]
         return paginate(filtered, page=page, page_size=page_size)
 
-    def get_by_id(self, object_id: str) -> dict[str, Any] | None:
+    def get_by_id(self, object_id: int) -> dict[str, Any] | None:
         objects = self.loader.load_objects()
         for obj in objects:
             if obj.get("id") == object_id:
@@ -49,9 +49,9 @@ class ObjectsService:
 
         if name and name.lower() not in obj_name:
             return False
-        if object_type and object_type.lower() != obj_type:
+        if object_type and object_type.lower() not in obj_type:
             return False
-        if constellation and constellation.lower() != obj_constellation:
+        if constellation and constellation.lower() not in obj_constellation:
             return False
 
         return True

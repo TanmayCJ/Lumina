@@ -45,10 +45,10 @@ def list_stars(
     summary="Get Star by ID",
     description="Fetch a single star record by unique star id.",
 )
-def get_star_by_id(star_id: str) -> StarDetailResponse:
+def get_star_by_id(star_id: int) -> StarDetailResponse:
     item = service.get_by_id(star_id)
     if item is None:
-        raise DatasetEntityNotFound("Star", star_id)
+        raise DatasetEntityNotFound("Star", str(star_id))
     return StarDetailResponse(item=item)
 
 

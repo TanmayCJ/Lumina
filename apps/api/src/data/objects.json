@@ -1,34 +1,110 @@
 [
   {
-    "id": "obj-001",
-    "name": "Orion Nebula",
-    "object_type": "nebula",
-    "constellation": "Orion",
-    "distance_light_years": 1344.0,
-    "description": "A diffuse nebula and one of the most observed deep-sky objects."
-  },
-  {
-    "id": "obj-002",
+    "id": 101,
     "name": "Andromeda Galaxy",
+    "category": "object",
     "object_type": "galaxy",
     "constellation": "Andromeda",
     "distance_light_years": 2537000.0,
-    "description": "The nearest major galaxy to the Milky Way."
+    "description": "The nearest major spiral galaxy to the Milky Way."
   },
   {
-    "id": "obj-003",
+    "id": 102,
+    "name": "Orion Nebula",
+    "category": "object",
+    "object_type": "nebula",
+    "constellation": "Orion",
+    "distance_light_years": 1344.0,
+    "description": "A bright diffuse nebula and active stellar nursery."
+  },
+  {
+    "id": 103,
     "name": "Pleiades",
-    "object_type": "open_cluster",
+    "category": "object",
+    "object_type": "open cluster",
     "constellation": "Taurus",
     "distance_light_years": 444.0,
-    "description": "A young open star cluster also known as the Seven Sisters."
+    "description": "A prominent nearby open cluster known as the Seven Sisters."
   },
   {
-    "id": "obj-004",
+    "id": 104,
+    "name": "Sombrero Galaxy",
+    "category": "object",
+    "object_type": "galaxy",
+    "constellation": "Virgo",
+    "distance_light_years": 29350000.0,
+    "description": "A galaxy notable for its bright nucleus and dust lane."
+  },
+  {
+    "id": 105,
+    "name": "Ring Nebula",
+    "category": "object",
+    "object_type": "planetary nebula",
+    "constellation": "Lyra",
+    "distance_light_years": 2300.0,
+    "description": "A planetary nebula formed from a dying Sun-like star."
+  },
+  {
+    "id": 106,
+    "name": "Lagoon Nebula",
+    "category": "object",
+    "object_type": "nebula",
+    "constellation": "Sagittarius",
+    "distance_light_years": 4100.0,
+    "description": "A giant interstellar cloud containing an active star-forming region."
+  },
+  {
+    "id": 107,
+    "name": "Eagle Nebula",
+    "category": "object",
+    "object_type": "nebula",
+    "constellation": "Serpens",
+    "distance_light_years": 7000.0,
+    "description": "Home of the Pillars of Creation, a famous star-forming structure."
+  },
+  {
+    "id": 108,
+    "name": "Whirlpool Galaxy",
+    "category": "object",
+    "object_type": "galaxy",
+    "constellation": "Canes Venatici",
+    "distance_light_years": 23000000.0,
+    "description": "A classic interacting spiral galaxy with prominent arms."
+  },
+  {
+    "id": 109,
     "name": "Crab Nebula",
-    "object_type": "supernova_remnant",
+    "category": "object",
+    "object_type": "supernova remnant",
     "constellation": "Taurus",
     "distance_light_years": 6500.0,
-    "description": "The remnant of a supernova observed in 1054 CE."
+    "description": "A remnant of the supernova observed in 1054 CE."
+  },
+  {
+    "id": 110,
+    "name": "Omega Centauri",
+    "category": "object",
+    "object_type": "globular cluster",
+    "constellation": "Centaurus",
+    "distance_light_years": 15800.0,
+    "description": "The largest known globular cluster in the Milky Way."
+  },
+  {
+    "id": 111,
+    "name": "Triangulum Galaxy",
+    "category": "object",
+    "object_type": "galaxy",
+    "constellation": "Triangulum",
+    "distance_light_years": 2730000.0,
+    "description": "A nearby spiral galaxy and member of the Local Group."
+  },
+  {
+    "id": 112,
+    "name": "Helix Nebula",
+    "category": "object",
+    "object_type": "planetary nebula",
+    "constellation": "Aquarius",
+    "distance_light_years": 655.0,
+    "description": "A large and nearby planetary nebula with a ring-like appearance."
   }
 ]

@@ -1,96 +1,100 @@
-# Lumina API (FastAPI)
+# Lumina API - Milestone 1
 
-Backend service for Lumina's astronomy assistant.
+FastAPI backend milestone for Lumina's guided astronomy feature.
 
-## What Is Included
+## Scope
 
-- FastAPI app with OpenAPI/Swagger docs
-- Versioned REST routes under `/api/v1`
-- Modular routers: health, stars, objects, exoplanets, guide
-- Dataset-driven service layer with local JSON loaders
-- Pydantic request/response schemas with examples
-- Filtering, pagination, and ID-based detail endpoints
-- Fallback in-memory records when dataset files are missing
+- Curated local datasets for stars and celestial objects
+- Search and detail endpoints for stars and objects
+- Guided explanation endpoint with user-level adaptation
+- Fully testable OpenAPI/Swagger documentation
 
-## Project Structure
+## Directory Map
 
 ```text
 apps/api
 |-- README.md
 |-- requirements.txt
 `-- src
-	|-- main.py
-	|-- api
-	|   |-- __init__.py
-	|   `-- routers
-	|       |-- __init__.py
-	|       |-- exoplanets.py
-	|       |-- guide.py
-	|       |-- health.py
-	|       |-- objects.py
-	|       `-- stars.py
-	|-- core
-	|   |-- __init__.py
-	|   |-- config.py
-	|   `-- exceptions.py
-	|-- data
-	|   |-- exoplanets.json
-	|   |-- objects.json
-	|   `-- stars.json
-	|-- models
-	|   |-- __init__.py
-	|   |-- common.py
-	|   |-- exoplanets.py
-	|   |-- guide.py
-	|   |-- health.py
-	|   |-- objects.py
-	|   `-- stars.py
-	`-- services
-		|-- __init__.py
-		|-- data_loader.py
-		|-- exoplanets_service.py
-		|-- guide_service.py
-		|-- objects_service.py
-		|-- stars_service.py
-		`-- utils.py
+    |-- main.py
+    |-- api/routers
+    |   |-- health.py
+    |   |-- stars.py
+    |   |-- objects.py
+    |   `-- guide.py
+    |-- core
+    |   |-- config.py
+    |   `-- exceptions.py
+    |-- models
+    |   |-- common.py
+    |   |-- health.py
+    |   |-- stars.py
+    |   |-- objects.py
+    |   `-- guide.py
+    |-- services
+    |   |-- data_loader.py
+    |   |-- stars_service.py
+    |   |-- objects_service.py
+    |   |-- guide_service.py
+    |   `-- utils.py
+    `-- data
+        |-- stars.json
+        `-- objects.json
 ```
+
+## Datasets
+
+- stars.json contains 12 curated stars
+- objects.json contains 12 curated deep-sky objects
+
+Included examples:
+- Sirius, Betelgeuse, Polaris, Vega, Proxima Centauri
+- Andromeda Galaxy, Orion Nebula, Pleiades, Sombrero Galaxy, Ring Nebula
+
+## Endpoints
+
+- GET /health
+- GET /api/v1/stars
+- GET /api/v1/stars/{star_id}
+- POST /api/v1/stars/search
+- GET /api/v1/objects
+- GET /api/v1/objects/{object_id}
+- POST /api/v1/objects/search
+- POST /api/v1/guide/explain
+
+## Guide Request Example
+
+```json
+{
+  "name": "Betelgeuse",
+  "category": "star",
+  "user_level": "beginner",
+  "include_scientific_facts": true
+}
+```
+
+Notes:
+- category can be omitted for auto-detection
+- supported user levels: beginner, intermediate, advanced
 
 ## Run Locally
 
-1. Create and activate a Python virtual environment.
-2. Install dependencies:
+1. Install dependencies:
 
 ```bash
 pip install -r apps/api/requirements.txt
 ```
 
-3. Start the API server from repository root:
+2. Start the server:
 
 ```bash
 uvicorn apps.api.src.main:app --reload
 ```
 
-4. Open docs:
+3. Open Swagger UI:
 
-- Swagger UI: `http://127.0.0.1:8000/docs`
-- OpenAPI JSON: `http://127.0.0.1:8000/openapi.json`
+- http://127.0.0.1:8000/docs
 
-## Minimum Test Routes
+4. Open OpenAPI JSON:
 
-- `GET /health`
-- `GET /api/v1/stars`
-- `GET /api/v1/stars/{star_id}`
-- `POST /api/v1/stars/search`
-- `GET /api/v1/objects`
-- `GET /api/v1/objects/{object_id}`
-- `POST /api/v1/objects/search`
-- `GET /api/v1/exoplanets`
-- `GET /api/v1/exoplanets/{planet_id}`
-- `POST /api/v1/exoplanets/search`
-- `POST /api/v1/guide/explain`
-
-## Notes
-
-- No authentication is enabled yet.
-- No database is required yet; services read local dataset files.
-- Service layer is intentionally isolated for future DB/vector-store integration.
+- http://127.0.0.1:8000/openapi.json

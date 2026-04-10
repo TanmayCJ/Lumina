@@ -6,8 +6,9 @@ from .common import PaginationMeta
 
 
 class CelestialObject(BaseModel):
-    id: str = Field(..., examples=["obj-001"])
+    id: int = Field(..., examples=[101])
     name: str = Field(..., examples=["Orion Nebula"])
+    category: str = Field(default="object", examples=["object"])
     object_type: str = Field(..., examples=["nebula"])
     constellation: Optional[str] = Field(default=None, examples=["Orion"])
     distance_light_years: Optional[float] = Field(default=None, ge=0, examples=[1344.0])
@@ -15,7 +16,7 @@ class CelestialObject(BaseModel):
 
 
 class ObjectSearchRequest(BaseModel):
-    name: Optional[str] = Field(default=None, examples=["orion"])
+    name: Optional[str] = Field(default=None, examples=["Andromeda"])
     object_type: Optional[str] = Field(default=None, examples=["nebula"])
     constellation: Optional[str] = Field(default=None, examples=["Orion"])
     page: int = Field(default=1, ge=1, examples=[1])

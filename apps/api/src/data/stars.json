@@ -1,47 +1,122 @@
 [
   {
-    "id": "star-001",
-    "name": "Betelgeuse",
-    "spectral_type": "M1-2Ia-ab",
-    "distance_light_years": 548.0,
-    "apparent_magnitude": 0.42,
-    "constellation": "Orion",
-    "description": "A red supergiant star in Orion and one of the brightest stars in the night sky."
-  },
-  {
-    "id": "star-002",
+    "id": 1,
     "name": "Sirius",
-    "spectral_type": "A1V",
-    "distance_light_years": 8.6,
-    "apparent_magnitude": -1.46,
+    "category": "star",
     "constellation": "Canis Major",
-    "description": "The brightest star visible from Earth's night sky."
+    "distance_light_years": 8.6,
+    "magnitude": -1.46,
+    "spectral_type": "A1V",
+    "description": "The brightest star in Earth's night sky, also called the Dog Star."
   },
   {
-    "id": "star-003",
-    "name": "Proxima Centauri",
-    "spectral_type": "M5.5Ve",
-    "distance_light_years": 4.24,
-    "apparent_magnitude": 11.13,
-    "constellation": "Centaurus",
-    "description": "The closest known star to the Sun."
+    "id": 2,
+    "name": "Betelgeuse",
+    "category": "star",
+    "constellation": "Orion",
+    "distance_light_years": 642.5,
+    "magnitude": 0.42,
+    "spectral_type": "M1-M2 Ia-ab",
+    "description": "A red supergiant star nearing the end of its life cycle."
   },
   {
-    "id": "star-004",
-    "name": "Vega",
-    "spectral_type": "A0V",
-    "distance_light_years": 25.0,
-    "apparent_magnitude": 0.03,
-    "constellation": "Lyra",
-    "description": "A bright nearby star often used as a photometric reference."
-  },
-  {
-    "id": "star-005",
+    "id": 3,
     "name": "Polaris",
-    "spectral_type": "F7Ib",
-    "distance_light_years": 433.0,
-    "apparent_magnitude": 1.98,
+    "category": "star",
     "constellation": "Ursa Minor",
-    "description": "The current North Star, close to the north celestial pole."
+    "distance_light_years": 433.8,
+    "magnitude": 1.98,
+    "spectral_type": "F7Ib",
+    "description": "The North Star, positioned close to the north celestial pole."
+  },
+  {
+    "id": 4,
+    "name": "Vega",
+    "category": "star",
+    "constellation": "Lyra",
+    "distance_light_years": 25.0,
+    "magnitude": 0.03,
+    "spectral_type": "A0V",
+    "description": "A bright, nearby star and one of the vertices of the Summer Triangle."
+  },
+  {
+    "id": 5,
+    "name": "Proxima Centauri",
+    "category": "star",
+    "constellation": "Centaurus",
+    "distance_light_years": 4.24,
+    "magnitude": 11.13,
+    "spectral_type": "M5.5Ve",
+    "description": "The closest known star to the Sun and part of the Alpha Centauri system."
+  },
+  {
+    "id": 6,
+    "name": "Rigel",
+    "category": "star",
+    "constellation": "Orion",
+    "distance_light_years": 860.0,
+    "magnitude": 0.13,
+    "spectral_type": "B8Ia",
+    "description": "A luminous blue supergiant that marks Orion's foot."
+  },
+  {
+    "id": 7,
+    "name": "Aldebaran",
+    "category": "star",
+    "constellation": "Taurus",
+    "distance_light_years": 65.0,
+    "magnitude": 0.86,
+    "spectral_type": "K5III",
+    "description": "A giant orange star that appears near the Hyades cluster."
+  },
+  {
+    "id": 8,
+    "name": "Antares",
+    "category": "star",
+    "constellation": "Scorpius",
+    "distance_light_years": 550.0,
+    "magnitude": 1.06,
+    "spectral_type": "M1.5Iab-b",
+    "description": "A red supergiant and one of the brightest stars in Scorpius."
+  },
+  {
+    "id": 9,
+    "name": "Capella",
+    "category": "star",
+    "constellation": "Auriga",
+    "distance_light_years": 42.9,
+    "magnitude": 0.08,
+    "spectral_type": "G8III",
+    "description": "A bright multiple-star system visible in the northern winter sky."
+  },
+  {
+    "id": 10,
+    "name": "Spica",
+    "category": "star",
+    "constellation": "Virgo",
+    "distance_light_years": 250.0,
+    "magnitude": 0.98,
+    "spectral_type": "B1V",
+    "description": "A hot blue binary system and the brightest star in Virgo."
+  },
+  {
+    "id": 11,
+    "name": "Arcturus",
+    "category": "star",
+    "constellation": "Bootes",
+    "distance_light_years": 36.7,
+    "magnitude": -0.05,
+    "spectral_type": "K1.5III",
+    "description": "An orange giant and one of the brightest stars in the night sky."
+  },
+  {
+    "id": 12,
+    "name": "Deneb",
+    "category": "star",
+    "constellation": "Cygnus",
+    "distance_light_years": 2615.0,
+    "magnitude": 1.25,
+    "spectral_type": "A2Ia",
+    "description": "A very luminous supergiant and part of the Summer Triangle."
   }
 ]

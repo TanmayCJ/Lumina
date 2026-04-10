@@ -1,3 +1,5 @@
+from typing import Any
+
 from .data_loader import LocalDatasetLoader
 from ..models.guide import GuideCategory, GuideExplainRequest, GuideExplainResponse, UserLevel
 
@@ -6,79 +8,102 @@ class GuideService:
     def __init__(self, loader: LocalDatasetLoader | None = None) -> None:
         self.loader = loader or LocalDatasetLoader()
 
-    def explain(self, payload: GuideExplainRequest) -> GuideExplainResponse:
-        related = self._find_related(payload.name, payload.category)
-        overview = self._build_overview(payload.name, payload.category, payload.user_level)
-        key_facts = self._build_key_facts(payload.name, payload.category, related)
+    def explain(self, payload: GuideExplainRequest) -> GuideExplainResponse | None:
+        matched = self._find_record(payload.name, payload.category)
+        if matched is None:
+            return None
 
-        scientific_context = None
-        if payload.include_scientific_facts:
-            scientific_context = (
-                "This summary references local catalog metadata and is designed for educational "
-                "orientation before deeper scientific analysis."
-            )
+        category, data = matched
+        explanation = self._build_explanation(
+            data=data,
+            category=category,
+            user_level=payload.user_level,
+            include_scientific_facts=payload.include_scientific_facts,
+        )
+        key_facts = self._build_key_facts(data=data, category=category)
 
         return GuideExplainResponse(
-            topic=payload.name,
-            category=payload.category,
-            user_level=payload.user_level,
-            overview=overview,
+            status="success",
+            object_found=True,
+            data=data,
+            explanation=explanation,
             key_facts=key_facts,
-            scientific_context=scientific_context,
-            related_entities=related,
         )
 
-    def _build_overview(self, name: str, category: GuideCategory, user_level: UserLevel) -> str:
-        level_phrase = {
-            UserLevel.beginner: "easy to follow",
-            UserLevel.intermediate: "balanced between intuition and detail",
-            UserLevel.advanced: "technical and concept-dense",
-        }[user_level]
-        return (
-            f"{name} is treated as a {category.value} topic in Lumina's sky guide. "
-            f"This explanation is {level_phrase} and organized for step-by-step learning."
-        )
+    def _find_record(
+        self,
+        name: str,
+        category: GuideCategory | None,
+    ) -> tuple[GuideCategory, dict[str, Any]] | None:
+        name_lc = name.strip().lower()
 
-    def _build_key_facts(self, name: str, category: GuideCategory, related: list[str]) -> list[str]:
-        facts = [
-            f"{name} is indexed in Lumina's local {category.value} dataset.",
-            "Filtering and search endpoints can retrieve this topic by name and attributes.",
-            "Use constellation and classification metadata to connect related sky objects.",
-        ]
-        if related:
-            facts.append(f"Related entries include: {', '.join(related[:3])}.")
-        return facts
+        if category in (None, GuideCategory.star):
+            for star in self.loader.load_stars():
+                if name_lc == str(star.get("name", "")).lower():
+                    return GuideCategory.star, star
 
-    def _find_related(self, name: str, category: GuideCategory) -> list[str]:
-        name_lc = name.lower()
+        if category in (None, GuideCategory.object):
+            for obj in self.loader.load_objects():
+                if name_lc == str(obj.get("name", "")).lower():
+                    return GuideCategory.object, obj
+
+        return None
+
+    def _build_explanation(
+        self,
+        data: dict[str, Any],
+        category: GuideCategory,
+        user_level: UserLevel,
+        include_scientific_facts: bool,
+    ) -> str:
+        name = data.get("name", "This object")
+        constellation = data.get("constellation", "its region of the sky")
+        description = data.get("description", "a noteworthy astronomy target")
+        distance = data.get("distance_light_years")
+
+        if user_level == UserLevel.beginner:
+            text = (
+                f"{name} is {description.lower()} in {constellation}. "
+                f"For a beginner, think of it as an easy anchor point to understand how different "
+                f"types of {category.value}s appear in the night sky."
+            )
+        elif user_level == UserLevel.intermediate:
+            text = (
+                f"{name} is categorized as a {category.value} associated with {constellation}. "
+                f"It helps connect sky-position learning with physical characteristics like brightness, "
+                f"spectral class, and distance."
+            )
+        else:
+            text = (
+                f"{name} is modeled in the local catalog as a {category.value} in {constellation}. "
+                f"Use this record as an entry point for comparative analysis of luminosity proxies, "
+                f"classification, and astrophysical evolution context."
+            )
+
+        if include_scientific_facts and distance is not None:
+            text += f" Current dataset distance estimate is approximately {distance} light-years."
+
+        return text
+
+    def _build_key_facts(self, data: dict[str, Any], category: GuideCategory) -> list[str]:
+        facts: list[str] = []
+        constellation = data.get("constellation")
+        if constellation:
+            facts.append(f"Located in the constellation {constellation}")
 
         if category == GuideCategory.star:
-            stars = self.loader.load_stars()
-            return [s.get("name", "") for s in stars if name_lc not in str(s.get("name", "")).lower()][:5]
+            spectral = data.get("spectral_type")
+            if spectral:
+                facts.append(f"Spectral type: {spectral}")
+            facts.append("Cataloged as a star in Lumina's curated local dataset")
+        else:
+            obj_type = data.get("object_type")
+            if obj_type:
+                facts.append(f"Object type: {obj_type}")
+            facts.append("Cataloged as a deep-sky object in Lumina's curated local dataset")
 
-        if category == GuideCategory.object:
-            objects = self.loader.load_objects()
-            return [o.get("name", "") for o in objects if name_lc not in str(o.get("name", "")).lower()][:5]
+        distance = data.get("distance_light_years")
+        if distance is not None:
+            facts.append(f"Distance estimate: {distance} light-years")
 
-        if category == GuideCategory.exoplanet:
-            planets = self.loader.load_exoplanets()
-            return [p.get("name", "") for p in planets if name_lc not in str(p.get("name", "")).lower()][:5]
-
-        if category == GuideCategory.constellation:
-            stars = self.loader.load_stars()
-            objects = self.loader.load_objects()
-            related = [
-                s.get("name", "")
-                for s in stars
-                if name_lc == str(s.get("constellation", "")).lower()
-            ]
-            related.extend(
-                [
-                    o.get("name", "")
-                    for o in objects
-                    if name_lc == str(o.get("constellation", "")).lower()
-                ]
-            )
-            return related[:5]
-
-        return []
+        return facts

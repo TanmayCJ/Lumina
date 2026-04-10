@@ -1,6 +1,6 @@
 # Lumina
 
-An AI-based astronomy assistant focused on learning, exploration, and guided understanding of stars, celestial objects, and exoplanets.
+An AI-based astronomy assistant focused on learning, exploration, and guided understanding of stars and celestial objects.
 
 Lumina is designed as a modular, AI-first platform with a clean backend foundation, local dataset support, and a scalable architecture for future LLM orchestration, vector search, and production deployment.
 
@@ -9,7 +9,7 @@ Lumina is designed as a modular, AI-first platform with a clean backend foundati
 ## Highlights
 
 - Modern FastAPI backend with OpenAPI/Swagger docs
-- Dataset-driven API layer for stars, deep-sky objects, and exoplanets
+- Dataset-driven API layer for stars and deep-sky objects
 - Modular architecture ready for AI orchestration and vector database integration
 - Local JSON dataset loading with graceful fallback behavior
 - Clear separation of routers, schemas, services, and data assets
@@ -24,9 +24,7 @@ Lumina currently uses local dataset files under `apps/api/src/data`.
 |---|---|---|
 | Stars | `apps/api/src/data/stars.json` | Star identity, spectral class, distance, magnitude, constellation |
 | Celestial Objects | `apps/api/src/data/objects.json` | Nebula/galaxy/cluster metadata and constellation linkage |
-| Exoplanets | `apps/api/src/data/exoplanets.json` | Host star, discovery method, orbital and habitability-related fields |
-
-Planned future sources include curated stellar catalogs, object metadata repositories, and expanded exoplanet archives.
+Planned future sources include curated stellar catalogs and expanded deep-sky object metadata repositories.
 
 ---
 
@@ -65,19 +63,6 @@ Supported filter/search fields:
 - `name`
 - `object_type`
 - `constellation`
-- `page`
-- `page_size`
-
-### Exoplanets
-
-- `GET /api/v1/exoplanets`
-- `GET /api/v1/exoplanets/{planet_id}`
-- `POST /api/v1/exoplanets/search`
-
-Supported filter/search fields:
-- `name`
-- `host_star`
-- `discovery_method`
 - `page`
 - `page_size`
 
@@ -129,6 +114,6 @@ Lumina is structured for modular growth across:
 
 ## Status
 
-Current stage: backend foundation complete and Swagger-testable.
+Current stage: milestone 1 backend foundation complete and Swagger-testable.
 
 Next stage: expand dataset coverage, add retrieval-enhanced guide logic, and connect frontend experience.

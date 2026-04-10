@@ -37,7 +37,7 @@ class StarsService:
         ]
         return paginate(filtered, page=page, page_size=page_size)
 
-    def get_by_id(self, star_id: str) -> dict[str, Any] | None:
+    def get_by_id(self, star_id: int) -> dict[str, Any] | None:
         stars = self.loader.load_stars()
         for star in stars:
             if star.get("id") == star_id:
@@ -59,13 +59,13 @@ class StarsService:
         star_spectral = str(star.get("spectral_type", "")).lower()
         star_constellation = str(star.get("constellation", "")).lower()
         distance = star.get("distance_light_years")
-        magnitude = star.get("apparent_magnitude")
+        magnitude = star.get("magnitude")
 
         if name and name.lower() not in star_name:
             return False
-        if spectral_type and spectral_type.lower() != star_spectral:
+        if spectral_type and spectral_type.lower() not in star_spectral:
             return False
-        if constellation and constellation.lower() != star_constellation:
+        if constellation and constellation.lower() not in star_constellation:
             return False
         if min_distance is not None and (distance is None or distance < min_distance):
             return False

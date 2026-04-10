@@ -37,10 +37,10 @@ def list_objects(
     summary="Get Celestial Object by ID",
     description="Fetch a single celestial object record by unique object id.",
 )
-def get_object_by_id(object_id: str) -> ObjectDetailResponse:
+def get_object_by_id(object_id: int) -> ObjectDetailResponse:
     item = service.get_by_id(object_id)
     if item is None:
-        raise DatasetEntityNotFound("Object", object_id)
+        raise DatasetEntityNotFound("Object", str(object_id))
     return ObjectDetailResponse(item=item)
 
 

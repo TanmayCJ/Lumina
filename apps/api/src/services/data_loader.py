@@ -38,12 +38,13 @@ class LocalDatasetLoader:
 def _fallback_stars() -> list[dict[str, Any]]:
     return [
         {
-            "id": "star-001",
+            "id": 1,
             "name": "Betelgeuse",
-            "spectral_type": "M1-2Ia-ab",
-            "distance_light_years": 548.0,
-            "apparent_magnitude": 0.42,
+            "category": "star",
             "constellation": "Orion",
+            "distance_light_years": 548.0,
+            "magnitude": 0.42,
+            "spectral_type": "M1-M2 Ia-ab",
             "description": "A red supergiant star in Orion.",
         }
     ]
@@ -52,8 +53,9 @@ def _fallback_stars() -> list[dict[str, Any]]:
 def _fallback_objects() -> list[dict[str, Any]]:
     return [
         {
-            "id": "obj-001",
+            "id": 101,
             "name": "Orion Nebula",
+            "category": "object",
             "object_type": "nebula",
             "constellation": "Orion",
             "distance_light_years": 1344.0,
@@ -69,13 +71,5 @@ def _fallback_exoplanets() -> list[dict[str, Any]]:
             "name": "Kepler-186f",
             "host_star": "Kepler-186",
             "discovery_method": "Transit",
-            "discovery_year": 2014,
-            "distance_light_years": 492.0,
-            "orbital_period_days": 129.9,
-            "radius_earth": 1.11,
-            "mass_jupiter": None,
-            "potentially_habitable": True,
-            "constellation": "Cygnus",
-            "summary": "An Earth-size exoplanet in the habitable zone.",
         }
     ]
