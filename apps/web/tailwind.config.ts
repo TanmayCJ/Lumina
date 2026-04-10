@@ -7,23 +7,26 @@ const config: Config = {
     extend: {
       colors: {
         lumina: {
-          bg: "#070a14",
-          panel: "#111933",
-          panelSoft: "#1a2240",
-          border: "#2b3864",
-          cyan: "#67e8f9",
-          violet: "#8b8fff",
-          blue: "#3b82f6",
-          gold: "#f4d27a"
+          bg: "#f7f8fe",
+          bgSoft: "#eef2ff",
+          panel: "#ffffff",
+          panelSoft: "#f7f9ff",
+          border: "#dbe4ff",
+          cyan: "#63d3e7",
+          violet: "#9ea7ff",
+          periwinkle: "#7f8ed4",
+          navy: "#1b2b55",
+          ink: "#2c3657"
         }
       },
       boxShadow: {
-        glow: "0 0 0 1px rgba(103, 232, 249, 0.15), 0 16px 48px rgba(59, 130, 246, 0.22)",
-        card: "0 8px 30px rgba(5, 8, 18, 0.7)"
+        glow: "0 0 0 1px rgba(99, 211, 231, 0.28), 0 18px 55px rgba(118, 144, 219, 0.22)",
+        card: "0 14px 45px rgba(72, 92, 148, 0.15)",
+        soft: "0 6px 22px rgba(97, 116, 172, 0.12)"
       },
       backgroundImage: {
         cosmos:
-          "radial-gradient(1200px 500px at 10% -10%, rgba(59,130,246,0.25), transparent 60%), radial-gradient(900px 400px at 80% 0%, rgba(139,143,255,0.28), transparent 55%), radial-gradient(700px 320px at 50% 100%, rgba(103,232,249,0.12), transparent 60%)"
+          "radial-gradient(1100px 500px at 8% -5%, rgba(137, 154, 240, 0.22), transparent 62%), radial-gradient(900px 440px at 88% 0%, rgba(140, 210, 230, 0.20), transparent 58%), radial-gradient(900px 420px at 48% 110%, rgba(205, 212, 255, 0.35), transparent 62%)"
       }
     }
   },

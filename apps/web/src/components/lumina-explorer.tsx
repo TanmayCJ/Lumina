@@ -66,34 +66,34 @@ export function LuminaExplorer() {
   }
 
   return (
-    <section className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-[1.05fr_1fr]">
+    <section id="explorer" className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-[1.02fr_1fr]">
       <motion.form
         initial={{ opacity: 0, y: 14 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.35 }}
         onSubmit={onSubmit}
-        className="glass section-glow rounded-3xl border border-lumina-border/60 p-6"
+        className="glass section-glow rounded-[1.75rem] border border-lumina-border/80 p-6 md:p-7"
       >
-        <div className="mb-5 flex items-center gap-2 text-slate-100">
-          <Orbit className="h-5 w-5 text-cyan-300" />
+        <div className="mb-5 flex items-center gap-2 text-lumina-ink">
+          <Orbit className="h-5 w-5 text-cyan-500" />
           <h2 className="text-xl font-semibold">Lumina Explorer</h2>
         </div>
 
-        <label className="mb-2 block text-xs uppercase tracking-wide text-slate-400">Star or Object Name</label>
+        <label className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-500">Star or Object Name</label>
         <div className="relative">
-          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500" />
           <input
             value={form.name}
             onChange={(e) => setForm((prev) => ({ ...prev, name: e.target.value }))}
             placeholder="Try Betelgeuse or Andromeda Galaxy"
-            className="w-full rounded-xl border border-lumina-border/70 bg-lumina-panel/45 py-3 pl-10 pr-3 text-sm text-slate-100 outline-none transition focus:border-cyan-300/60"
+            className="w-full rounded-xl border border-lumina-border/90 bg-white/85 py-3 pl-10 pr-3 text-sm text-lumina-ink outline-none transition placeholder:text-slate-400 focus:border-cyan-400/70 focus:shadow-soft"
           />
         </div>
 
         <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
-            <label className="mb-2 block text-xs uppercase tracking-wide text-slate-400">Category</label>
+            <label className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-500">Category</label>
             <select
               value={form.categoryChoice}
               onChange={(e) =>
@@ -102,7 +102,7 @@ export function LuminaExplorer() {
                   categoryChoice: e.target.value as FormState["categoryChoice"]
                 }))
               }
-              className="w-full rounded-xl border border-lumina-border/70 bg-lumina-panel/45 p-3 text-sm text-slate-100 outline-none transition focus:border-cyan-300/60"
+              className="w-full rounded-xl border border-lumina-border/90 bg-white/85 p-3 text-sm text-lumina-ink outline-none transition focus:border-cyan-400/70 focus:shadow-soft"
             >
               <option value="auto">Auto Detect</option>
               <option value="star">Star</option>
@@ -111,11 +111,11 @@ export function LuminaExplorer() {
           </div>
 
           <div>
-            <label className="mb-2 block text-xs uppercase tracking-wide text-slate-400">User Level</label>
+            <label className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-500">User Level</label>
             <select
               value={form.userLevel}
               onChange={(e) => setForm((prev) => ({ ...prev, userLevel: e.target.value as UserLevel }))}
-              className="w-full rounded-xl border border-lumina-border/70 bg-lumina-panel/45 p-3 text-sm text-slate-100 outline-none transition focus:border-cyan-300/60"
+              className="w-full rounded-xl border border-lumina-border/90 bg-white/85 p-3 text-sm text-lumina-ink outline-none transition focus:border-cyan-400/70 focus:shadow-soft"
             >
               <option value="beginner">Beginner</option>
               <option value="intermediate">Intermediate</option>
@@ -124,33 +124,33 @@ export function LuminaExplorer() {
           </div>
         </div>
 
-        <label className="mt-4 flex items-center gap-2 rounded-xl border border-lumina-border/70 bg-lumina-panel/45 p-3 text-sm text-slate-200">
+        <label className="mt-4 flex items-center gap-2 rounded-xl border border-lumina-border/90 bg-white/85 p-3 text-sm text-lumina-ink">
           <input
             type="checkbox"
             checked={form.includeScientificFacts}
             onChange={(e) => setForm((prev) => ({ ...prev, includeScientificFacts: e.target.checked }))}
-            className="h-4 w-4 accent-cyan-400"
+            className="h-4 w-4 accent-cyan-500"
           />
           Include scientific fact enrichment
         </label>
 
         <button
           disabled={!canSubmit}
-          className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-400 to-indigo-400 px-4 py-3 text-sm font-semibold text-slate-950 transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-55"
+          className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-300 via-sky-300 to-indigo-300 px-4 py-3 text-sm font-semibold text-lumina-navy shadow-soft transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-55"
         >
           <Sparkle className="h-4 w-4" />
           {loading ? "Exploring..." : "Generate Guided Explanation"}
         </button>
 
         <div className="mt-6">
-          <p className="mb-2 text-xs uppercase tracking-wide text-slate-400">Quick Examples</p>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">Quick Examples</p>
           <div className="flex flex-wrap gap-2">
             {EXAMPLES.map((name) => (
               <button
                 key={name}
                 type="button"
                 onClick={() => setForm((prev) => ({ ...prev, name }))}
-                className="rounded-full border border-lumina-border/80 bg-lumina-panel/45 px-3 py-1.5 text-xs text-slate-200 transition hover:border-cyan-300/60 hover:text-cyan-100"
+                className="rounded-full border border-lumina-border/85 bg-white/80 px-3 py-1.5 text-xs font-medium text-lumina-ink transition hover:border-cyan-400/70 hover:text-sky-700"
               >
                 {name}
               </button>
